@@ -1,0 +1,6 @@
+rootProject.name = 'haunted-reviews'
+
+include 'data-model'
+include 'place-manager'
+include 'user-manager'
+include 'gateway'
