@@ -22,7 +22,7 @@ import org.hibernate.annotations.View;
       LEFT JOIN (
         review_rating rating
         INNER JOIN rating_category category ON category.id = rating.rating_category_id
-        AND category.affects_overall_score = true
+        AND category.overall_score_affected = true
       ) rating ON place.id = rating.place_id
       LEFT JOIN review ON place.id = review.place_id
       AND review.user_id = rating.user_id
