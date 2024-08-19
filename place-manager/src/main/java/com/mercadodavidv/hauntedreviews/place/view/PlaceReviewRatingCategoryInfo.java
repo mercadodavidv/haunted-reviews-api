@@ -16,14 +16,23 @@ import org.hibernate.annotations.View;
 @IdClass(PlaceReviewRatingCategoryInfoKey.class)
 @View(query = """
     SELECT
-      rating.place_id AS place_id,
-      rating.rating_category_id AS rating_category_id,
-      AVG(rating.score) AS average_category_score
+      catxjoin.place_id AS place_id,
+      catxjoin.rating_category_id AS rating_category_id,
+      COALESCE(AVG(rating.score), 0) AS average_category_score
     FROM
-      review_rating rating
+      (
+        SELECT
+          place.id AS place_id,
+          category.id AS rating_category_id,
+        FROM
+          place,
+          rating_category category
+      ) catxjoin
+      LEFT JOIN review_rating rating ON catxjoin.place_id = rating.place_id
+      AND catxjoin.rating_category_id = rating.rating_category_id
     GROUP BY
-      rating.place_id,
-      rating.rating_category_id
+      catxjoin.place_id,
+      catxjoin.rating_category_id
     """)
 @Synchronize("place")
 @Getter
