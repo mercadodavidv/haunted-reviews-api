@@ -1,2 +1,2 @@
-# haunted-reviews
-Review site for spooky haunted locations. Spring Boot and React.
+# Haunted Reviews
+Review site for spooky haunted locations.
