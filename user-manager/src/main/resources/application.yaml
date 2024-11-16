@@ -1,0 +1,58 @@
+user-manager:
+  delegating-password-encoder:
+    accepted-ids:
+      - bcrypt
+
+spring:
+  application:
+    name: user-manager
+  profiles:
+    active: local,h2
+  messages:
+    basename: "messages"
+    fallback-to-system-locale: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          review-site-frontend:
+            registration:
+              client-id: ${REVIEW_SITE_FRONTEND_CLIENT_ID}
+              client-secret: ${REVIEW_SITE_FRONTEND_CLIENT_SECRET}
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+              redirect-uris:
+                - ${REVIEW_SITE_FRONTEND_CLIENT_REDIRECT_URI}
+                - "https://oauth.pstmn.io/v1/callback"
+              post-logout-redirect-uris:
+                - ${REVIEW_SITE_FRONTEND_CLIENT_POST_LOGOUT_REDIRECT_URI}
+              scopes:
+                - "openid"
+                - "profile"
+                - "email"
+                - "user"
+      client:
+        registration:
+          google-idp:
+            provider: google
+            client-id: ${OAUTH_GOOGLE_CLIENT_ID}
+            client-secret: ${OAUTH_GOOGLE_CLIENT_SECRET}
+            scope: openid, https://www.googleapis.com/auth/userinfo.profile, https://www.googleapis.com/auth/userinfo.email
+            client-name: Sign in with Google
+          github-idp:
+            provider: github
+            client-id: ${OAUTH_GITHUB_CLIENT_ID}
+            client-secret: ${OAUTH_GITHUB_CLIENT_SECRET}
+            scope: user:email, read:user
+            client-name: Sign in with GitHub
+        provider:
+          google:
+            user-name-attribute: sub
+          github:
+            user-name-attribute: id

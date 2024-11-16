@@ -1,0 +1,13 @@
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          review-site-frontend:
+            registration:
+              client-id: "review-site-frontend"
+              client-secret: "{noop}secret"
+              redirect-uris:
+                - "http://127.0.0.1:3001/login/oauth2/code/haunted-reviews"
+              post-logout-redirect-uris:
+                - "http://127.0.0.1:3001/"

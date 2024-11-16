@@ -1,4 +1,4 @@
-rootProject.name = 'haunted-reviews'
+rootProject.name = 'haunted-reviews-api'
 
 include 'data-model'
 include 'place-manager'

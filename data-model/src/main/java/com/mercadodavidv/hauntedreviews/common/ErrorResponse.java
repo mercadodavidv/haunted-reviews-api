@@ -9,9 +9,11 @@ import org.springframework.hateoas.RepresentationModel;
 @EqualsAndHashCode(callSuper = true)
 public class ErrorResponse extends RepresentationModel<ErrorResponse> {
 
-  // Unique identifier of the type of error, in english. e.g. "New Review is invalid".
+  // TODO i18n
+  // Unique identifier of the type of error. e.g. "New Review is invalid".
   private final String error;
 
+  // TODO i18n
   // Further elaboration in english. Not machine-readable. e.g. "... with ID=1", or "X is required".
   private final String message;
 
