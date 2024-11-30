@@ -23,7 +23,7 @@ Handles users and social login. Responsibilities:
 - OpenID Provider for Haunted Reviews, utilizing Spring Authorization Server.
 - Resource server for user profiles and user account settings.
 
-At present, users must sign in with a social provider to create an account. The component [CreateLocalDebugUsers](user-manager/src/main/java/com/mercadodavidv/hauntedreviews/auth/CreateLocalDebugUsers.java) preloads the in-memory database with some users.
+At present, users must sign in with a social provider to create an account. Additionally, the component [CreateLocalDebugUsers](user-manager/src/main/java/com/mercadodavidv/hauntedreviews/auth/CreateLocalDebugUsers.java) preloads the local in-memory database with some users that you can use to sign in with email and password.
 
 ### Service: place-manager
 ```shell
